@@ -1,0 +1,57 @@
+.paginationCards__Card{
+    display: flex;
+    flex-flow: column;
+    border:solid grey 2px;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    min-width: 130px;
+    max-height: 200px;
+    font-size: small;
+}
+.paginationCards{
+    display: flex;
+    flex-flow: row nowrap;
+}
+.dayOf{
+    color:red;
+}
+.paginationCards__Icon{
+    max-width: 60px;
+    max-height: 60px;
+}
+.paginationCards__Tempr{
+    display:flex;
+    flex-flow: column nowrap;
+    font-size: small;
+}
+.paginationCards__Card{
+    display:flex;
+    flex-direction: column;
+    min-width: 80px;
+    justify-content: space-between;
+    text-align: center;
+}
+.WeatherDescription{
+    display:flex;
+    flex-direction: row;
+    font-size: 11px;
+    margin-top: 10px;
+}
+.Description_titles{
+ display:absolute;
+ margin-top:90px;
+ font-size: inherit;
+}
+.Description_titles p{
+ margin-bottom: 4px;
+ margin-top: 0;
+}
+.table_cell{
+    text-align: center;
+}
+.WeatherDescription__Table{
+    margin-left: 2px;
+    border:solid grey 2px;
+    border-radius:30px
+}

@@ -1,0 +1,14 @@
+img{
+width: 300px;
+}
+.shapka{
+    display: flex;
+    flex-flow: column nowrap;
+
+}
+.shapka__firstRow{
+    display:flex;
+}
+.shapka__secondRow{
+    display:flex;
+}
