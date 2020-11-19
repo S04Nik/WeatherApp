@@ -1,46 +1,76 @@
-.paginationCards__Card{
-    display: flex;
-    flex-flow: column;
-    border:solid grey 2px;
-    border-radius: 10px;
-    justify-content: center;
-    align-items: center;
-    min-width: 130px;
-    max-height: 200px;
-    font-size: small;
-}
-.paginationCards{
+.Container__paginationCards{
     display: flex;
     flex-flow: row nowrap;
 }
-.dayOf{
-    color:red;
+.Card{
+    display: flex;
+    flex-flow: column;
+    border:solid grey 2px;
+    justify-content: center;
+    align-items: center;
+    min-width: 100px;
+    max-width: 100px;
+    max-height: 200px;
+    font-size: small;
+    justify-content: space-between;
+    text-align: center;
+    box-shadow:1 0 10px 10px 10px grey;
 }
-.paginationCards__Icon{
+.Card_active{
+    display: flex;
+    flex-flow: column;
+    border:solid grey 1px;
+    border-bottom: unset;
+    box-shadow: 5px -5px 5px 0 rgb(197, 193, 193);
+    justify-content: center;
+    align-items: center;
+    min-width: 100px;
+    max-width: 100px;
+    max-height: 200px;
+    font-size: small;
+    justify-content: space-between;
+    text-align: center;
+}
+.Card__dayOf{
+    color:red;
+    font-weight: bold;
+    font-size: 14px;
+}
+.Card__workingDay{
+    color:black;
+    font-weight: bold;
+    font-size: 14px;
+}
+.Card__weatherImg{
     max-width: 60px;
     max-height: 60px;
 }
-.paginationCards__Tempr{
+.Card__tempr{
+    display:flex;
+    justify-content: space-around;
+    min-width: 90px;
+}
+.Card__temprMin{
     display:flex;
     flex-flow: column nowrap;
     font-size: small;
 }
-.paginationCards__Card{
+.Card__temprMax{
     display:flex;
-    flex-direction: column;
-    min-width: 80px;
-    justify-content: space-between;
-    text-align: center;
+    flex-flow: column nowrap;
+    font-size: small;
 }
 .WeatherDescription{
     display:flex;
     flex-direction: row;
-    font-size: 11px;
     margin-top: 10px;
+}
+.WeatherDescription_Container{
+    
 }
 .Description_titles{
  display:absolute;
- margin-top:90px;
+ margin-top:70px;
  font-size: inherit;
 }
 .Description_titles p{
@@ -51,7 +81,12 @@
     text-align: center;
 }
 .WeatherDescription__Table{
-    margin-left: 2px;
-    border:solid grey 2px;
-    border-radius:30px
+    
+}
+.Container{
+    border: solid grey 3px;
+    border-top: hidden;
+    max-width: 726px;
+    min-height: 400px;
+
 }

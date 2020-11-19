@@ -1,123 +1,41 @@
 import React, { useState } from 'react'
 import s from './weekCards.module.css'
+import WeekCardsDescription from './WeekCardsDescription';
 const WeekCardsComponent=(props)=>{
-    const [activeCard, setActiveCard] = useState(1);
+    const [activeCard, setActiveCard] = useState(props.cards[0].dayOfWeek);
+    if(props.activeCardCH===true && activeCard!==props.cards[0].dayOfWeek)
+    {
+        setActiveCard(props.cards[0].dayOfWeek);
+    }
     return(
-    <div className={s.MainBlock}>
-        <div className={s.paginationCards}>
-
-        {props.cards.map(el=>{return<>
-        <div className={s.paginationCards__Card} onClick={()=>setActiveCard(el.paginationNumber)}>
-            <span>{el.dayOfWeek}</span>
-            <span className={el.dayOfWeek==='Sunday' && s.dayOf|| el.dayOfWeek==='Saturday' && s.dayOf}>
+    <div className={s.Container}>
+        <div className={s.Container__paginationCards}>
+        {
+        props.cards.map(el=>{return<>
+        <div className={el.dayOfWeek===activeCard?s.Card_active:s.Card} onClick={()=>{
+            if(el.description)setActiveCard(el.dayOfWeek)
+            else setActiveCard(null)}}>
+            <span className={s.Card__dayOfWeek}>{el.dayOfWeek}</span>
+            <span className={el.dayOfWeek==='Sunday'|| el.dayOfWeek==='Saturday' ? s.Card__dayOf : s.Card__workingDay }>
             {el.day}</span>
-            <span>{el.month}</span>
+            <span className={s.Card__month}>{el.month}</span>
             <div>
-                <img className={s.paginationCards__Icon} src={el.urlIcon} alt='weatherIcon'></img>
+                <img className={s.Card__weatherImg} src={el.urlIcon} alt='weatherIcon'></img>
             </div>
-
-           <div  className={s.paginationCards__TemprMain}>
-           <div className={s.paginationCards__Tempr}>       
+           <div  className={s.Card__tempr}>
+           <div className={s.Card__temprMin}>       
                     min 
-                    <span>{el.min_temp>0&&"+"}{el.min_temp}°</span>
-
+                    <span>{el.min_t>0&&"+"}{el.min_t}°</span>
             </div>
-            <div className={s.paginationCards__Tempr}>       
+            <div className={s.Card__temprMax}>
                     max 
-                    <span>{el.min_temp>0&&"+"}{el.max_temp}°</span>
+                    <span>{el.max_t>0&&"+"}{el.max_t}°</span>
             </div>
            </div>
         </div>
         </>})}
         </div>
-        {
-            activeCard&&<div className={s.WeatherDescription}>
-           <div className={s.Description_titles}>
-               <p>Температура, °C</p>
-               <p>чувствуется как</p>
-               <p>Давление, мм</p>
-               <p>Влажность, %</p>
-               <p>Ветер, м/сек</p>
-           </div>
-               <table className={s.WeatherDescription__Table}>
-                   <thead>
-                   <tr>
-                    {             
-                        props.cards[activeCard-1].description.map(el=>{
-                            return<td className={s.table_cell}>
-                            { el.time}:00
-                            </td>
-                        })
-                    }
-                    </tr>
-                   </thead>
-                   <tbody>
-                   <tr>
-                       {
-                        props.cards[activeCard-1].description.map(el=>{
-                            return<td className={s.table_cell}>
-                               <img className={s.paginationCards__Icon} src={ el.urlIcon}/>
-                            </td>
-                        })
-                       }
-                    </tr>
-                    <tr>
-                        {
-                            props.cards[activeCard-1].description.map(el=>{
-                            return<td className={s.table_cell}>
-                                {el.t_main>0&&'+'}{el.t_main}°
-                            </td>
-                        })
-                        }
-                    </tr>
-                    <tr>
-                        {
-                            props.cards[activeCard-1].description.map(el=>{
-                            return<td className={s.table_cell}>
-                            {el.t_feels_like>0&&"+"}{el.t_feels_like}°
-                            </td>
-                        })
-                        }
-                    </tr>
-                    <tr>
-                        {
-                            props.cards[activeCard-1].description.map(el=>{
-                            return<td className={s.table_cell}>
-                              {el.pressure}
-                            </td>})
-                        }
-                    </tr>
-                    <tr>
-                        {
-                            props.cards[activeCard-1].description.map(el=>{
-                            return<td className={s.table_cell}>
-                              {el.humidity}
-                            </td>})
-                        }
-                    </tr>
-                    <tr>
-                        {
-                            props.cards[activeCard-1].description.map(el=>{
-                            return<td className={s.table_cell}>
-                                {el.wind.speed}                              
-                            </td>
-                        })
-                        }
-                    </tr>
-                    <tr>
-                        {
-                            props.cards[activeCard-1].description.map(el=>{
-                            return<td className={s.table_cell}>
-                                {el.wind.direction}                              
-                            </td>
-                        })
-                        }
-                    </tr>
-                   </tbody>
-               </table>
-            </div>
-        }
-
+        <WeekCardsDescription activeCard={activeCard} description={props.description}/>
     </div>
 )}
 export default WeekCardsComponent 

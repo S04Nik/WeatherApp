@@ -1,14 +1,61 @@
-img{
-width: 300px;
-}
-.shapka{
+.shapka__container{
+    margin-left:20px;
     display: flex;
     flex-flow: column nowrap;
-
 }
-.shapka__firstRow{
+.firstRow{
     display:flex;
+    position:relative;
 }
-.shapka__secondRow{
+.secondRow{
     display:flex;
+    justify-content: space-between;
+}
+.firstRow__submit{
+    max-width: 50px;
+    max-height: 40px;
+}
+.firstRow__submiticon{
+    max-width: 40px;
+    max-height: 40px;
+}
+.firstRow__input{
+    min-width: 320px;
+    max-width: 320px;
+    min-height: 30px;
+    max-height: 40px;
+    font-size: 18px;
+}
+.firstRow__allSuggestions{
+    display: flex;
+    position: absolute;
+    top: 75px;
+    flex-flow: column nowrap;
+    max-width: 320px;
+    border: solid grey 2px;
+}
+.firstRow__inputSugestion{
+    background-color:white;
+}
+.firstRow__inputSugestion_active{
+    background-color: rgb(52, 52, 165);
+    cursor: pointer;
+}
+.firstRow__formSearch{
+    display:flex;
+    justify-content: сenter;
+    align-items:center;
+}
+.firstRow__searchArea{
+    display: flex;
+    flex-direction:column;
+}
+.secondRow__MapIcon{
+    max-width: 50px;
+    max-height: 50px;
+}
+.secondRow__City{
+    border: solid grey 2px;
+    background-color:white;
+    
 }
