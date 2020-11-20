@@ -18,8 +18,8 @@ class WeekCardsContainer extends React.Component{
 
         }
     }
-    shouldComponentUpdate(nextProps){
-        if(this.props.location!==nextProps.location)
+    shouldComponentUpdate(nextProps,nextState){
+        if(this.props.location!==nextProps.location&&this.state.firstConnection===false)
         {
             this.props.GetWeatherByCoord(nextProps.location);
             this.setState({firstConnection:true})
@@ -29,6 +29,10 @@ class WeekCardsContainer extends React.Component{
         {
             return true;
         }else
+        if(nextState!==this.state)
+        {
+            return true;
+        }
         return false
 
     }

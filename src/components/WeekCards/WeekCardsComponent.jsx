@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import s from './weekCards.module.css'
-import WeekCardsDescription from './WeekCardsDescription';
+import WeekCardsDescription from './WeekCardsDescription/WeekCardsDescription';
 const WeekCardsComponent=(props)=>{
     const [activeCard, setActiveCard] = useState(props.cards[0].dayOfWeek);
     if(props.activeCardCH===true && activeCard!==props.cards[0].dayOfWeek)
@@ -14,7 +14,7 @@ const WeekCardsComponent=(props)=>{
         props.cards.map(el=>{return<>
         <div className={el.dayOfWeek===activeCard?s.Card_active:s.Card} onClick={()=>{
             if(el.description)setActiveCard(el.dayOfWeek)
-            else setActiveCard(null)}}>
+            else return false}}>
             <span className={s.Card__dayOfWeek}>{el.dayOfWeek}</span>
             <span className={el.dayOfWeek==='Sunday'|| el.dayOfWeek==='Saturday' ? s.Card__dayOf : s.Card__workingDay }>
             {el.day}</span>
@@ -35,7 +35,10 @@ const WeekCardsComponent=(props)=>{
         </div>
         </>})}
         </div>
-        <WeekCardsDescription activeCard={activeCard} description={props.description}/>
+        <WeekCardsDescription activeCard={activeCard} 
+        description={props.description}
+        sunrise={props.cards[0].sunrise}
+        sunset={props.cards[0].sunset}/>
     </div>
 )}
 export default WeekCardsComponent 

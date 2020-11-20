@@ -9,15 +9,15 @@
 }
 .secondRow{
     display:flex;
-    justify-content: space-between;
+
 }
 .firstRow__submit{
     max-width: 50px;
-    max-height: 40px;
+    max-height: 35px;
 }
 .firstRow__submiticon{
     max-width: 40px;
-    max-height: 40px;
+    max-height: 30px;
 }
 .firstRow__input{
     min-width: 320px;
@@ -29,7 +29,7 @@
 .firstRow__allSuggestions{
     display: flex;
     position: absolute;
-    top: 75px;
+    top: 53px;
     flex-flow: column nowrap;
     max-width: 320px;
     border: solid grey 2px;
@@ -55,7 +55,9 @@
     max-height: 50px;
 }
 .secondRow__City{
-    border: solid grey 2px;
-    background-color:white;
     
+}
+.firstRow__sLogo{
+    max-width: 300px;
+    max-height: 100px;
 }

@@ -14,7 +14,7 @@
     font-size: small;
     justify-content: space-between;
     text-align: center;
-    box-shadow:1 0 10px 10px 10px grey;
+    box-shadow:inset 0px -4px 4px 0px rgb(110, 110, 110);
 }
 .Card_active{
     display: flex;
@@ -54,39 +54,128 @@
     display:flex;
     flex-flow: column nowrap;
     font-size: small;
+    font-weight: bolder;
 }
 .Card__temprMax{
     display:flex;
     flex-flow: column nowrap;
     font-size: small;
+    font-weight: bolder;
 }
 .WeatherDescription{
+ display: flex;
+ flex-flow: row nowrap;
+
+}
+.WeatherDescription__Container{
+    margin-top: 10px;
+    margin-left:90px;
     display:flex;
     flex-direction: row;
+    padding-bottom: 40px;
+}
+.leftSide__Container{
+    position: absolute;
+    margin-left: 20px;
     margin-top: 10px;
 }
-.WeatherDescription_Container{
-    
-}
-.Description_titles{
+.Description__titles{
  display:absolute;
- margin-top:70px;
- font-size: inherit;
+ display:flex;
+ flex-flow: column nowrap;
+ align-items:flex-end;
+ margin-top:93px;
+ font-size: 14px;
+ margin-right: 5px;
+ margin-left: 10px;
 }
-.Description_titles p{
- margin-bottom: 4px;
+.Descr_Title{
+ margin-bottom: 10px;
  margin-top: 0;
 }
 .table_cell{
     text-align: center;
+    padding: 4px;
+    border-left: grey solid 2px;
 }
-.WeatherDescription__Table{
+.table_cell_time{
+    background-color: rgb(75, 75, 184);
+    text-align: center;
+    padding: 4px;
+    font-weight: bolder;
+}
+.table_cell_tempr{
+    text-align: center;
+    padding: 4px;
+    border-left: grey solid 2px;
+    font-weight: bolder;
+    font-size: 18px;
+}
+.DescriprionTable{
+    border-right: grey solid 3px;
+    border-left: grey solid 3px;
+    border-bottom: grey solid 3px;
     
 }
-.Container{
-    border: solid grey 3px;
-    border-top: hidden;
-    max-width: 726px;
-    min-height: 400px;
 
+.Container{
+    border: solid grey 1px;
+    border-top: hidden;
+    max-width: 700px;
+    min-height: 400px;
+    border-bottom-right-radius: 40px;
+}
+/* .DescriprionTable_str:hover{
+    background-color: grey;
+} */
+
+.leftSide_sunGoes{
+    display: flex;
+    flex-direction: row;
+    border: solid grey 2px;
+    border-radius: 20px;
+    padding-left: 4px;
+    padding-right: 4px;
+    background-color: rgb(248, 247, 194);
+}
+.leftSide_sunGoes_span{
+    display: flex;
+    flex-direction: column;
+
+    margin-right: 5px;
+}
+.Thermometr_img{
+    min-height:260px;
+    min-width: 120px;
+    max-height:200px;
+    max-width: 80px;
+}
+.Thermometr{
+    display: flex;
+    flex-direction: row;
+}
+.Thermometr_marks{
+    position: absolute;
+    bottom: 70px;
+    left:20px;
+    font-size: 8px;
+    padding: 0;
+    margin: 0;
+    min-height: 100px;
+    font-weight: bolder;
+}
+.Thermometr_Liquid{
+    position: absolute;
+    left: 52px;
+    bottom: 62px;
+    min-width: 17px;
+    min-height: 33px;
+    max-height: 170px;
+    background-color:rgb(189, 14, 14);
+    z-index: -1;
+}
+.Thermometr_mark{
+    margin-bottom: 20px;
+    padding: 0;
+    font-size: 8px;
 }

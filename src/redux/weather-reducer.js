@@ -53,7 +53,9 @@ let itr=0;
         'Thursday','Friday','Saturday'];
         let url=`http://openweathermap.org/img/w/${el.weather[0].icon}.png`;
         let dateExample=new Date(el.dt*1000);
-        if(itr===3)
+        let sunrise=new Date(el.sunrise*1000);
+        let sunset=new Date(el.sunset*1000);
+        if(itr===5)
         {
             return {dayOfWeek:days[dateExample.getDay()],
                 day:dateExample.getDate(),
@@ -61,7 +63,9 @@ let itr=0;
                 min_t: Math.trunc(el.temp.min),
                 max_t: Math.trunc(el.temp.max),
                 urlIcon:url,
-                description:false
+                description:false,
+                sunrise:{hours:sunrise.getHours(),minutes:sunrise.getMinutes()},
+                sunset:{hours:sunset.getHours(),minutes:sunset.getMinutes()}
             }
         }
         itr++;
@@ -71,7 +75,9 @@ let itr=0;
                 min_t: Math.trunc(el.temp.min),
                 max_t: Math.trunc(el.temp.max),
                 urlIcon:url,
-                description:true
+                description:true,
+                sunrise:{hours:sunrise.getHours(),minutes:sunrise.getMinutes()},
+                sunset:{hours:sunset.getHours(),minutes:sunset.getMinutes()}
             }
     })
 }
@@ -85,10 +91,10 @@ const formatDataHourly=(data)=>{
         let offsetAngle=el.wind_deg + degreePerDirection / 2;
         return {hours:dateExample.getHours(),               
                 dayOfWeek:days[dateExample.getDay()],
-                main_t:Math.trunc(el.temp),
-                t_feels_like: Math.trunc(el.feels_like),
-                pressure:el.pressure,
-                humidity: el.humidity,
+                main_t:Math.trunc(el.main.temp),
+                t_feels_like: Math.trunc(el.main.feels_like),
+                pressure:el.main.pressure,
+                humidity: el.main.humidity,
                 description:el.weather[0].description,
                 wind_direction:(offsetAngle >= 0 * degreePerDirection && offsetAngle < 1 * degreePerDirection) ? "N"
                 : (offsetAngle >= 1 * degreePerDirection && offsetAngle < 2 * degreePerDirection) ? "NE"
@@ -106,7 +112,7 @@ const formatDataHourly=(data)=>{
 
 export const GetWeatherByCoord=(Cord)=>{
     return(dispatch)=>{
-        weatherAPI.getWeatherForecast(Cord)
+        weatherAPI.getWeatherForecastDaily(Cord)
         .then(response=>{
             if(response.status===200)
             {
@@ -114,11 +120,20 @@ export const GetWeatherByCoord=(Cord)=>{
                 formatedData=formatedData.slice(0,response.data.daily.length-1)
                 // dispatch(SetCityName());
                 dispatch(SetPaginationCards(formatedData));
-                dispatch(SetPaginationCardsDescription(formatDataHourly(response.data.hourly)));
-                dispatch(InitializeApp());
+
             }else
-            {console.log(`ERROR (weather-reducer) : ${response.status}`)}
+            {console.log(`ERROR (weather-reducer) : ${response.status}`)}})
+            weatherAPI.getWeatherForecastHourly(Cord)
+            .then(response=>{
+                if(response.status===200)
+                {
+                dispatch(SetPaginationCardsDescription(formatDataHourly(response.data.list)));
+                dispatch(InitializeApp());
+                }else
+                {console.log(`ERROR (weather-reducer) : ${response.status}`)
+            }
         })
+
 }}
 export const setLocationData=(Cord)=>{
     return(dispatch)=>{
