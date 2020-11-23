@@ -11,20 +11,20 @@ import s from './index.module.css';
 
 
 ReactDOM.render(
-  <React.StrictMode>
+
   <Provider store={store}>
   <BrowserRouter>
   <div className={s.root_Main}>
 
     <HeaderContainer/>
-    <Route exact path='/'><Redirect to="/WeatherMain"/></Route>
+    <Route exact path=''><Redirect to="/WeatherMain"/></Route>
     <Route exact path='/WeatherMap' component={WeatherMapComponent}/>
     <Route exact path='/WeatherMain' component={withRouter(WeekCardsContainer)}/>   
 
   </div>  
     </BrowserRouter>
     </Provider>
-  </React.StrictMode>,
+,
   document.getElementById('root')
 );
 

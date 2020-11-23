@@ -3,12 +3,10 @@ import s from './weekCards.module.css'
 import WeekCardsDescription from './WeekCardsDescription/WeekCardsDescription';
 const WeekCardsComponent=(props)=>{
     const [activeCard, setActiveCard] = useState(props.cards[0].dayOfWeek);
-    if(props.activeCardCH===true && activeCard!==props.cards[0].dayOfWeek)
-    {
-        setActiveCard(props.cards[0].dayOfWeek);
-    }
+
     return(
     <div className={s.Container}>
+    <div className={s.Container_frame}>
         <div className={s.Container__paginationCards}>
         {
         props.cards.map(el=>{return<>
@@ -38,7 +36,11 @@ const WeekCardsComponent=(props)=>{
         <WeekCardsDescription activeCard={activeCard} 
         description={props.description}
         sunrise={props.cards[0].sunrise}
-        sunset={props.cards[0].sunset}/>
+        sunset={props.cards[0].sunset}
+        daysInweek={props.daysInweek}
+        arrayOfHeaders={props.arrayOfHeaders}
+        />
+        </div>
     </div>
 )}
 export default WeekCardsComponent 

@@ -1,8 +1,7 @@
 import React from 'react'
 import HeaderComponent from './HeaderComponent'
-import {GetWeatherByCoord,InitializeApp,setLocationData} from '../../redux/weather-reducer'
+import {InitializeApp,setLocationData} from '../../redux/weather-reducer'
 import { connect } from 'react-redux';
-import { change } from 'redux-form';
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 
 
@@ -51,7 +50,6 @@ class HeaderContainer extends React.Component{
        console.log('render',this.props.locationName)
     return(
         <HeaderComponent locationName={this.props.locationName}
-        getWeatherData={this.props.GetWeatherByCoord}
         InitializeApp={this.props.InitializeApp}
         location={this.props.location}
         handleSelect={this.handleSelect.bind(this)}
@@ -69,4 +67,4 @@ let mapStateToProps=(state)=>({
 })
 
 export default connect(mapStateToProps,
-{ GetWeatherByCoord,InitializeApp,setLocationData})(HeaderContainer)
+{InitializeApp,setLocationData})(HeaderContainer)

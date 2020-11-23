@@ -1,109 +1,168 @@
-import React from 'react'
+import React, { useState } from 'react'
 import s from '../weekCards.module.css'
+import E  from '../../../assets/E.png'
+import NE  from '../../../assets/NE.png'
+import SE  from '../../../assets/SE.png'
+import S  from '../../../assets/S.png'
+import W  from '../../../assets/W.png'
+import SW  from '../../../assets/SW.png'
+import NW  from '../../../assets/NW.png'
+import N  from '../../../assets/N.png'
+
+
 const WeekCardsDescription=(props)=>{
-    const [Sstyle,setStyle]=React.useState();
-    const arrayOfHeaders=[2,5,8,11,14,17,20,23];
-    const time=new Date();
+    let [timer,setTimer]=useState(new Date());
+    // component didmount / willupdate
+    React.useEffect(()=>{
+        let timer=setInterval(()=>{tick()},10000);
+        return function cleanUp(){
+            clearInterval(timer);
+        }
+    });
+    function tick() {
+        setTimer(new Date());
+       }
+    
     let fillTable=(condition)=>{
         
         return props.description.map(el=>{
         if(el.dayOfWeek===props.activeCard)
         {
-            if(arrayOfHeaders.includes(el.hours))
+            if(props.arrayOfHeaders.includes(el.hours))
             {
                 switch(condition)
                 {
                     // придумать как выделять колонки . css не подойдет
                     case 'hours':{
                         return(<td className={s.table_cell_time}>
-                            { el.hours}:00
+                            { el.hours===13?14:el.hours}:00
                             </td>)
                     }
-                    case 'icon':{
-                        return (<td className={s.table_cell}>
-                            <img className={s.paginationCards__Icon} src={el.urlIcon} alt='weather icon'/>
-                            </td>)
+                    case 'icon':{                        
+                        if(el.hours===timer.getHours()|| el.hours===timer.getHours()-2||
+                        el.hours===timer.getHours()-1||el.hours===timer.getHours()+1)
+                        {
+                            if(props.daysInweek[timer.getDay()]===el.dayOfWeek)
+                            {
+                                return (<td className={s.table_cell_CurrentTime}>
+                                    <img className={s.paginationCards__Icon} src={el.urlIcon} alt='weather icon'/>
+                                    </td>)
+                            }
+                        }               
+                            return (<td className={s.table_cell}>
+                                <img className={s.paginationCards__Icon} src={el.urlIcon} alt='weather icon'/>
+                                </td>)
                     }
                     case 'main_t':{
+                        if(el.hours===timer.getHours()||el.hours===timer.getHours()-2||el.hours===timer.getHours()-1||el.hours===timer.getHours()+1)
+                        {
+                            if(props.daysInweek[timer.getDay()]===el.dayOfWeek)
+                            {
+                            return (<td className={`${s.table_cell_CurrentTime} ${s.table_cell_tempr}`}>
+                                {el.main_t>0&&'+'}{el.main_t}°
+                                </td>)
+                            }
+                        }
                         return(<td className={s.table_cell_tempr}>
                             {el.main_t>0&&'+'}{el.main_t}°
-                            </td>)
+                            </td>)                   
                     }
                     case 't_feels_like':{
+                        if(el.hours===timer.getHours()||el.hours===timer.getHours()-2||el.hours===timer.getHours()-1||el.hours===timer.getHours()+1)
+                        {
+                            if(props.daysInweek[timer.getDay()]===el.dayOfWeek)
+                            {
+                            return(<td className={s.table_cell_CurrentTime}>
+                                {el.t_feels_like>0&&"+"}{el.t_feels_like}°
+                                </td>)
+                            }
+                        }
                         return(<td className={s.table_cell}>
                             {el.t_feels_like>0&&"+"}{el.t_feels_like}°
                             </td>)
                     }
                     case 'pressure':{
-                        return<td className={s.table_cell}>
-                        {el.pressure}
-                        </td>
+                        if(el.hours===timer.getHours()||el.hours===timer.getHours()-2||el.hours===timer.getHours()-1||el.hours===timer.getHours()+1)
+                        {
+                            if(props.daysInweek[timer.getDay()]===el.dayOfWeek)
+                            {
+                            return<td className={s.table_cell_CurrentTime}>
+                            {el.pressure}
+                            </td>
+                            }
+                        }
+                            return<td className={s.table_cell}>
+                            {el.pressure}
+                            </td>                 
                     }
                     case 'humidity':{
-                        return<td className={s.table_cell}>
-                        {el.humidity}
-                        </td>
+                        if(el.hours===timer.getHours()||el.hours===timer.getHours()-2||el.hours===timer.getHours()-1||el.hours===timer.getHours()+1)
+                        {
+                            if(props.daysInweek[timer.getDay()]===el.dayOfWeek)
+                            {
+                            return<td className={s.table_cell_CurrentTime}>
+                            {el.humidity}
+                            </td>
+                            }
+                        }
+                            return<td className={s.table_cell}>
+                            {el.humidity}
+                            </td>                    
                     }
                     case 'wind_speed':{
-                        return<td className={s.table_cell}>
-                        {el.wind_speed}
-                        </td>
+                        if(el.hours===timer.getHours()||el.hours===timer.getHours()-2||el.hours===timer.getHours()-1||el.hours===timer.getHours()+1)
+                        {
+                            if(props.daysInweek[timer.getDay()]===el.dayOfWeek)
+                            {    
+                            return<td className={s.table_cell_CurrentTime}>
+                            {el.wind_speed}
+                            </td>
+                            }
+                        }
+                            return<td className={s.table_cell}>
+                            {el.wind_speed}
+                            </td>
                     }
                     case 'wind_direction':{
-                        return<td className={s.table_cell}>
-                        {el.wind_direction}
-                        </td>
+                        if(el.hours===timer.getHours()||el.hours===timer.getHours()-2||el.hours===timer.getHours()-1||el.hours===timer.getHours()+1)
+                        {
+                            if(props.daysInweek[timer.getDay()]===el.dayOfWeek)
+                            { 
+                            return<td className={s.table_cell_CurrentTime}>
+                            <img className={s.DescriptionTsble_windDirection}
+                            src={el.wind_direction==='N'?N:el.wind_direction==='NE'?NE:
+                            el.wind_direction==='NW'?NW:el.wind_direction==='S'?S:
+                            el.wind_direction==='E'?E:el.wind_direction==='W'?W:
+                            el.wind_direction==='SE'?SE:el.wind_direction==='SW'?SW:null} alt='direction icon'></img>                     
+                            </td>
+                            }
+                        }
+                            return<td className={s.table_cell}>
+                            <img className={s.DescriptionTsble_windDirection}
+                            src={el.wind_direction==='N'?N:el.wind_direction==='NE'?NE:
+                            el.wind_direction==='NW'?NW:el.wind_direction==='S'?S:
+                            el.wind_direction==='E'?E:el.wind_direction==='W'?W:
+                            el.wind_direction==='SE'?SE:el.wind_direction==='SW'?SW:null} alt='direction icon'></img>
+                            </td>
                     }
                     default : return null
                 }
             }
-        }
-
-        })
+        }})
     }
-    setTimeout(()=>{
-        let tmp;
-        if(props.description[0].main_t<0)
-        {
-            tmp=60-(props.description[0].main_t*1.5);
-        }else
-        if(props.description[0].main_t>=0)
-        {
-            tmp=60+(props.description[0].main_t*1.5);
-        }
-        const NewStyle={
-            position:'absolute',
-            left: '54px',
-            bottom: '95px',
-            'min-width': '12px',
-            'min-height': `${tmp}px`,
-            'max-height': `${tmp}px`,
-            'background-color':'rgb(189, 14, 14)',
-            'z-index': '-1'
-        }
-        setStyle(NewStyle);
-    },5000)
 return(<>{
     props.activeCard&&<div className={s.WeatherDescription}>
     <div className={s.leftSide__Container}>
     <div className={s.leftSide}>
-    <div className={s.Thermometr}>
-    <div className={s.Thermometr_marks}>
-        <p className={s.Thermometr_mark}>40__</p>
-        <p className={s.Thermometr_mark}>20__</p>
-        <p className={s.Thermometr_mark}>0___</p>
-        <p className={s.Thermometr_mark}>20__</p>
-        <p className={s.Thermometr_mark}>40__</p>
-        </div>
-        <img className={s.Thermometr_img} src='https://pngimg.com/uploads/thermometer/thermometer_PNG35.png'></img>
-        <div  className={s.Thermometr_Liquid}></div>
-        <div  className={s.Thermometr_Liquid} style={Sstyle}></div>
-
+    <div className={s.leftSide_time }>
+    <span className={s.leftSide_spanSmall}>
+    Погода сегодня в <span className={s.leftSide_spanBig}>{timer.getHours() +':'+ timer.getMinutes()}</span>
+    </span>
     </div>
-        {/* <span className={s.leftSide_time }>Погода сегодня в {time.getHours() +':'+ time.getMinutes()}</span> */}
+        
         <div className={s.leftSide_sunGoes}>
-        <span>Восход<span>: {props.sunrise.hours+':'}{props.sunrise.minutes} |</span></span> 
-        <span>| Закат<span>: {props.sunset.hours+':'}{props.sunset.minutes}</span></span> 
+        <span  className={s.leftSide_spanSmall}>Восход<p className={s.leftSide_spanBig }> {props.sunrise.hours+':'}{props.sunrise.minutes}</p></span> 
+        <span className={s.leftSide_spanSmall}>Закат<p  className={s.leftSide_spanBig }> {props.sunset.hours+':'}{props.sunset.minutes}</p></span> 
         </div>
     
     </div>

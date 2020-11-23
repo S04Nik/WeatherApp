@@ -37,16 +37,13 @@ class WeekCardsContainer extends React.Component{
 
     }
     render(){
-        if(this.state.firstConnection===true)
-        {
-            this.setState({firstConnection:false});
-            return(<>
-            <WeekCardsComponent cards={this.props.weatherCards} description={this.props.cardsDescription} activeCardCH={true} />
-            </>)
-        }else
-        if(this.props.initialized===true)
+        if(this.props.initialized===true && this.props.weatherCards!==null)
         return(<>
-        <WeekCardsComponent cards={this.props.weatherCards} description={this.props.cardsDescription}/>
+        <WeekCardsComponent cards={this.props.weatherCards}
+         description={this.props.cardsDescription}
+         daysInweek={this.props.daysInweek}
+         arrayOfHeaders={this.props.arrayOfHeaders}
+         />
         </>)
         else
         return(<></>)
@@ -56,8 +53,9 @@ let mapStateToProps=(state)=>({
     initialized:state.weatherPage.Initialized,
     weatherCards:state.weatherPage.WeatherCards,
     cardsDescription:state.weatherPage.CardsDescription,
-    location:state.weatherPage.Location
-    // cards:getCards(state)
+    location:state.weatherPage.Location,
+    arrayOfHeaders:state.weatherPage.arrayOfHeaders,
+    daysInweek:state.weatherPage.daysInweek
 })
 
 export default connect(mapStateToProps,

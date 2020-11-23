@@ -7,11 +7,22 @@ import { NavLink } from 'react-router-dom';
 let HeaderComponent=(props)=>
 {
     const [address,setAddress]=useState('');
+    const [previousAdress,setPrevAdress]=useState([]);
     const reduxSelect=(value)=>
     {
         let handleSelect=props.handleSelect;
         handleSelect(value);
+        if(!previousAdress.includes(value))
+        {
+            if(previousAdress&&previousAdress.length>3)
+            {
+                setPrevAdress([previousAdress[previousAdress.length-1],value]);
+            }else
+            setPrevAdress([...previousAdress,value]);
+        }
+       
         setAddress('');
+        
     }
     const reduxSubmit=(value)=>
     {
@@ -27,6 +38,7 @@ let HeaderComponent=(props)=>
 
     return(<header className={s.shapka}>
     <div className={s.shapka__container}>
+    <div className={s.firstRow__Container}>
     <div className={s.firstRow}>
     <NavLink to={'/WeatherMain'}> 
     <img className={s.firstRow__sLogo} 
@@ -38,6 +50,18 @@ let HeaderComponent=(props)=>
     reduxChange={reduxChange}
     />
     </div>
+    <div className={s.firstRow_placesContainer}>
+    <div className={s.firstRow_places}>
+        {
+            previousAdress&&previousAdress.map(el=>{
+            return <button className={s.firstRow_PlacesButton} value={el} onClick={(e)=>reduxSelect(e.target.value)}>{el}</button>
+        })
+        }
+    </div>
+    </div>
+    
+    </div>
+   
     <div className={s.secondRow}>
     {props.locationName!==undefined&&
     <h1 className={s.secondRow__City}>{props.locationName.city},{props.locationName.country}</h1>}

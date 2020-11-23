@@ -33,6 +33,7 @@
     flex-flow: column nowrap;
     max-width: 320px;
     border: solid grey 2px;
+    z-index: 1;
 }
 .firstRow__inputSugestion{
     background-color:white;
@@ -54,10 +55,29 @@
     max-width: 50px;
     max-height: 50px;
 }
-.secondRow__City{
-    
-}
+
 .firstRow__sLogo{
     max-width: 300px;
     max-height: 100px;
+}
+.firstRow__Container{
+    margin-bottom: 35px;
+}
+.firstRow_PlacesButton{
+    text-overflow: ellipsis;
+    border: none;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 155px;
+    min-width: 155px;
+    max-height: 30px;
+    font-size: small;
+}
+.firstRow_PlacesButton:hover{
+    background-color:#0E5EBA;
+}
+.firstRow_places{
+    position: absolute;
+    top: 77px;
+    z-index: 0;
 }
