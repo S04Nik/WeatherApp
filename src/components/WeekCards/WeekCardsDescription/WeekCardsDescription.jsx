@@ -38,18 +38,19 @@ const WeekCardsDescription=(props)=>{
                             { el.hours===13?14:el.hours}:00
                             </td>)
                     }
-                    case 'icon':{                        
+                    case 'icon':{
+                    
                         if(el.hours===timer.getHours()|| el.hours===timer.getHours()-2||
                         el.hours===timer.getHours()-1||el.hours===timer.getHours()+1)
                         {
+                            console.log(el.hours+'___________ICON');
                             if(props.daysInweek[timer.getDay()]===el.dayOfWeek)
                             {
                                 return (<td className={s.table_cell_CurrentTime}>
                                     <img className={s.paginationCards__Icon} src={el.urlIcon} alt='weather icon'/>
-                                    </td>)
+                                    </td>);
                             }
-                        }               
-                            return (<td className={s.table_cell}>
+                        }       return (<td className={s.table_cell}>
                                 <img className={s.paginationCards__Icon} src={el.urlIcon} alt='weather icon'/>
                                 </td>)
                     }
@@ -156,7 +157,9 @@ return(<>{
     <div className={s.leftSide}>
     <div className={s.leftSide_time }>
     <span className={s.leftSide_spanSmall}>
-    Погода сегодня в <span className={s.leftSide_spanBig}>{timer.getHours() +':'+ timer.getMinutes()}</span>
+    Погода сегодня в <span className={s.leftSide_spanBig}>
+    {timer.getMinutes()>=10?timer.getHours() +':'+ timer.getMinutes():
+    timer.getHours() +':0'+ timer.getMinutes()}</span>
     </span>
     </div>
         

@@ -180,9 +180,7 @@ export const GetWeatherByCoord=(Cord)=>{
                         {
                             let dtEx=new Date(el.dt*1000);
                             dtEx=dtEx.getHours();
-                            console.log(dtEx+"!!!!!!!!!!!!!!!");
-                            // console.log(new Date(el.dt*1000).getHours())
-                            if([2,5,8,11,13,17,20,23].includes(dtEx))//[2,5,8,11,14,17,20,23].includes(
+                            if([2,5,8,11,13,17,20,23].includes(dtEx))
                             {
 
                                 return{el}
