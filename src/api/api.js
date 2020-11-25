@@ -22,7 +22,7 @@ export const weatherAPI={
         const timeStamp=(Math.round(now.getTime() / 1000));
         console.log(timeStamp);
         //${Math.floor(Date.now() / 1000)}
-        return await axios.get( `https://api.openweathermap.org/data/2.5/onecall/timemachine?&units=metric&exclude=current&lat=${data.lat}&lon=${data.lng}&dt=${Math.round(now.getTime() / 1000)}&appid=0edd0ebd1ffc098e4d957c67a97375bc`)
+        return await axios.get( `https://api.openweathermap.org/data/2.5/onecall/timemachine?&units=metric&lat=${data.lat}&lon=${data.lng}&dt=${Math.round(now.getTime() / 1000)}&appid=0edd0ebd1ffc098e4d957c67a97375bc`)
    //    `https://api.openweathermap.org/data/2.5/onecall/timemachine?lat=${data.lat}&lon=${data.lng}&dt=${Math.floor(Date.now() / 1000)}&appid=0edd0ebd1ffc098e4d957c67a97375bc`)
     }
 }

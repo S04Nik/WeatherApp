@@ -132,7 +132,7 @@ const formatMissedData=(data)=>{
         let dtEx=new Date(el.dt*1000);
 
         let offsetAngle=el.wind_deg + degreePerDirection / 2;
-        return {hours:dtEx.getHours(),               
+        return {hours:dtEx.getHours()!==2?dtEx.getHours()+1:dtEx.getHours(),               
                 dayOfWeek:days[dtEx.getDay()],
                 main_t:Math.trunc(el.temp),
                 t_feels_like: Math.trunc(el.feels_like),
@@ -180,7 +180,8 @@ export const GetWeatherByCoord=(Cord)=>{
                         {
                             let dtEx=new Date(el.dt*1000);
                             dtEx=dtEx.getHours();
-                            if([2,5,8,11,13,17,20,23].includes(dtEx))
+                            console.log(dtEx);
+                            if([2,4,7,10,13,16,19,22].includes(dtEx))
                             {
 
                                 return{el}
