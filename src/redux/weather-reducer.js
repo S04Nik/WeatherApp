@@ -62,7 +62,7 @@ const formatDataDaily=(data)=>{
 let itr=0;
     return data.map(el=>{
         const months=[ "January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December" ];
+        "July", "August", "September", "October", "November", "December"];
         const days=['Sunday','Monday','Tuesday','Wednesday',
         'Thursday','Friday','Saturday'];
         let url=`http://openweathermap.org/img/w/${el.weather[0].icon}.png`;
@@ -73,7 +73,7 @@ let itr=0;
         {
             return {dayOfWeek:days[dtEx.getDay()],
                 day:dtEx.getDate(),
-                month:months[dtEx.getMonth()+1],
+                month:months[dtEx.getMonth()],
                 min_t: Math.trunc(el.temp.min),
                 max_t: Math.trunc(el.temp.max),
                 urlIcon:url,
@@ -85,7 +85,7 @@ let itr=0;
         itr++;
         return {dayOfWeek:days[dtEx.getDay()],
                 day:dtEx.getDate(),
-                month:months[dtEx.getMonth()+1],
+                month:months[dtEx.getMonth()],
                 min_t: Math.trunc(el.temp.min),
                 max_t: Math.trunc(el.temp.max),
                 urlIcon:url,
@@ -101,7 +101,7 @@ const formatDataHourly=(data)=>{
         'Thursday','Friday','Saturday'];
     return data.map(el=>{
         let url=`http://openweathermap.org/img/w/${el.weather[0].icon}.png`;
-        let dtEx=new Date(el.dt*1000);
+        let dtEx=new Date(el.dt*1000);    console.log(dtEx.getHours());
         let offsetAngle=el.wind.deg + degreePerDirection / 2;
         return {hours:dtEx.getHours(),               
                 dayOfWeek:days[dtEx.getDay()],

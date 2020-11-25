@@ -9,7 +9,7 @@ const WeekCardsComponent=(props)=>{
     <div className={s.Container_frame}>
         <div className={s.Container__paginationCards}>
         {
-        props.cards.map(el=>{return<>
+        props.cards.map(el=>{return<div key={el.dayOfWeek}>
         <div className={el.dayOfWeek===activeCard?s.Card_active:s.Card} onClick={()=>{
             if(el.description)setActiveCard(el.dayOfWeek)
             else return false}}>
@@ -31,7 +31,7 @@ const WeekCardsComponent=(props)=>{
             </div>
            </div>
         </div>
-        </>})}
+        </div>})}
         </div>
         <WeekCardsDescription activeCard={activeCard} 
         description={props.description}

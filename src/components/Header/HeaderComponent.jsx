@@ -54,7 +54,7 @@ let HeaderComponent=(props)=>
     <div className={s.firstRow_places}>
         {
             previousAdress&&previousAdress.map(el=>{
-            return <button className={s.firstRow_PlacesButton} value={el} onClick={(e)=>reduxSelect(e.target.value)}>{el}</button>
+            return <button key={previousAdress} className={s.firstRow_PlacesButton} value={el} onClick={(e)=>reduxSelect(e.target.value)}>{el}</button>
         })
         }
     </div>
@@ -92,7 +92,7 @@ let SearchForm=(props)=>{
         {loading?<div className={s.firstRow__inputSugestion}>...loading</div>:null} 
         {suggestions.map((suggestion)=>{
 
-            return <div className={suggestion.active?s.firstRow__inputSugestion_active:s.firstRow__inputSugestion}
+            return <div key={suggestion.toString()} className={suggestion.active?s.firstRow__inputSugestion_active:s.firstRow__inputSugestion}
             {...getSuggestionItemProps(suggestion)}>
             <span>{suggestion.description}</span>
             </div>

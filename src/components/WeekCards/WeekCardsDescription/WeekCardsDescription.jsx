@@ -24,17 +24,17 @@ const WeekCardsDescription=(props)=>{
        }
     
     let fillTable=(condition)=>{
-        
+        let tmp=0;
         return props.description.map(el=>{
         if(el.dayOfWeek===props.activeCard)
         {
             if(props.arrayOfHeaders.includes(el.hours))
             {
+                tmp++;
                 switch(condition)
-                {
-                    // придумать как выделять колонки . css не подойдет
+                {               
                     case 'hours':{
-                        return(<td className={s.table_cell_time}>
+                        return(<td className={s.table_cell_time} key={`hours ${tmp}`}>
                             { el.hours===13?14:el.hours}:00
                             </td>)
                     }
@@ -46,11 +46,11 @@ const WeekCardsDescription=(props)=>{
                             console.log(el.hours+'___________ICON');
                             if(props.daysInweek[timer.getDay()]===el.dayOfWeek)
                             {
-                                return (<td className={s.table_cell_CurrentTime}>
+                                return (<td className={s.table_cell_CurrentTime} key={`icon ${tmp}`}>
                                     <img className={s.paginationCards__Icon} src={el.urlIcon} alt='weather icon'/>
                                     </td>);
                             }
-                        }       return (<td className={s.table_cell}>
+                        }       return (<td className={s.table_cell}  key={`icon ${tmp}`}>
                                 <img className={s.paginationCards__Icon} src={el.urlIcon} alt='weather icon'/>
                                 </td>)
                     }
@@ -59,12 +59,13 @@ const WeekCardsDescription=(props)=>{
                         {
                             if(props.daysInweek[timer.getDay()]===el.dayOfWeek)
                             {
-                            return (<td className={`${s.table_cell_CurrentTime} ${s.table_cell_tempr}`}>
+                            return (<td className={`${s.table_cell_CurrentTime} ${s.table_cell_tempr}`}
+                             key={`main_t ${tmp}`}>
                                 {el.main_t>0&&'+'}{el.main_t}°
                                 </td>)
                             }
                         }
-                        return(<td className={s.table_cell_tempr}>
+                        return(<td className={s.table_cell_tempr}  key={`main_t ${tmp}`}>
                             {el.main_t>0&&'+'}{el.main_t}°
                             </td>)                   
                     }
@@ -73,12 +74,12 @@ const WeekCardsDescription=(props)=>{
                         {
                             if(props.daysInweek[timer.getDay()]===el.dayOfWeek)
                             {
-                            return(<td className={s.table_cell_CurrentTime}>
+                            return(<td className={s.table_cell_CurrentTime} key={`t_feels_like ${tmp}`}>
                                 {el.t_feels_like>0&&"+"}{el.t_feels_like}°
                                 </td>)
                             }
                         }
-                        return(<td className={s.table_cell}>
+                        return(<td className={s.table_cell} key={`t_feels_like ${tmp}`}>
                             {el.t_feels_like>0&&"+"}{el.t_feels_like}°
                             </td>)
                     }
@@ -87,12 +88,12 @@ const WeekCardsDescription=(props)=>{
                         {
                             if(props.daysInweek[timer.getDay()]===el.dayOfWeek)
                             {
-                            return<td className={s.table_cell_CurrentTime}>
+                            return<td className={s.table_cell_CurrentTime} key={`pressure ${tmp}`}>
                             {el.pressure}
                             </td>
                             }
                         }
-                            return<td className={s.table_cell}>
+                            return<td className={s.table_cell} key={`pressure ${tmp}`}>
                             {el.pressure}
                             </td>                 
                     }
@@ -101,12 +102,12 @@ const WeekCardsDescription=(props)=>{
                         {
                             if(props.daysInweek[timer.getDay()]===el.dayOfWeek)
                             {
-                            return<td className={s.table_cell_CurrentTime}>
+                            return<td className={s.table_cell_CurrentTime} key={`humidity ${tmp}`}>
                             {el.humidity}
                             </td>
                             }
                         }
-                            return<td className={s.table_cell}>
+                            return<td className={s.table_cell} key={`humidity ${tmp}`}>
                             {el.humidity}
                             </td>                    
                     }
@@ -115,12 +116,12 @@ const WeekCardsDescription=(props)=>{
                         {
                             if(props.daysInweek[timer.getDay()]===el.dayOfWeek)
                             {    
-                            return<td className={s.table_cell_CurrentTime}>
+                            return<td className={s.table_cell_CurrentTime} key={`wind_speed ${tmp}`}>
                             {el.wind_speed}
                             </td>
                             }
                         }
-                            return<td className={s.table_cell}>
+                            return<td className={s.table_cell} key={`wind_speed ${tmp}`}>
                             {el.wind_speed}
                             </td>
                     }
@@ -129,7 +130,7 @@ const WeekCardsDescription=(props)=>{
                         {
                             if(props.daysInweek[timer.getDay()]===el.dayOfWeek)
                             { 
-                            return<td className={s.table_cell_CurrentTime}>
+                            return<td className={s.table_cell_CurrentTime} key={`wind_direction ${tmp}`}>
                             <img className={s.DescriptionTsble_windDirection}
                             src={el.wind_direction==='N'?N:el.wind_direction==='NE'?NE:
                             el.wind_direction==='NW'?NW:el.wind_direction==='S'?S:
@@ -138,7 +139,7 @@ const WeekCardsDescription=(props)=>{
                             </td>
                             }
                         }
-                            return<td className={s.table_cell}>
+                            return<td className={s.table_cell} key={`wind_direction ${tmp}`}>
                             <img className={s.DescriptionTsble_windDirection}
                             src={el.wind_direction==='N'?N:el.wind_direction==='NE'?NE:
                             el.wind_direction==='NW'?NW:el.wind_direction==='S'?S:
